@@ -16,11 +16,21 @@ import Edit from "@mui/icons-material/Edit";
 function ToDoItem({ task, id, completed, removeTodo, toggleTodo, editTodo }) {
     const [isEditing, toggle] = useToggle(false);
     return (
-        <ListItem style={{height: "64px"}}>
+        <ListItem style={{ height: "64px" }}>
             {isEditing
-                ? <EditToDoForm editTodo={editTodo} id={id} task={task} toggleEditForm={toggle}/>
-                : <>
-                    <Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)}/>     
+                ? (<EditToDoForm
+                    editTodo={editTodo}
+                    id={id}
+                    task={task}
+                    toggleEditForm={toggle}
+                />
+            ) : (
+                <>
+                    <Checkbox
+                        tabIndex={-1}
+                        checked={completed}
+                        onClick={() => toggleTodo(id)}
+                    />
                     <ListItemText style={{textDecoration: completed ? "line-through" : "none"}}>
                         {task}
                     </ListItemText>
@@ -33,7 +43,7 @@ function ToDoItem({ task, id, completed, removeTodo, toggleTodo, editTodo }) {
                         </IconButton>
                     </ListItemSecondaryAction>
                 </>
-            }
+            )}
         </ListItem>
     );
 }
